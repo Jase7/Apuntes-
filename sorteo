@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Sorteo</title>
+	<meta charset="UTF-8">
+	<script src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
+	<style type="text/css">
+	* {
+		font-family: arial;
+	}
+	</style>
+</head>
+<body>
+
+	<form name="form">
+		<strong>Participante:</strong><br>
+		<input type="text" name="1" class="primero">
+		<br><br>
+		
+	</form>
+
+	<button class="añadir">Añadir participante</button>
+
+	<button class="sortear">Sortear</button>
+
+	<div class="lista"><strong>Lista:</strong><br><br></div>
+	<div class="ganador"></div>
+
+	<script type="text/javascript">
+
+	$('.lista').hide();
+
+	var boton = $('.añadir');
+	var sortear = $('.sortear');
+
+	boton.click(function(){
+
+		var input = $('input[type="text"]:last');
+		var input_text = $('input[type=text]');
+		var name = input_text.length + 1;
+
+		$(input).after('<br><br><strong>Participante #' + name + ':</strong><br><input type="text" name="'+ name + '">');
+	
+	});
+
+	
+
+	sortear.click(function() {
+
+		 cuantos = document.form.elements.length;
+		var input_text = $('input[type=text]');
+
+		for (i = 0; i <= cuantos - 1; ++i) {
+
+			var valor = input_text[i].value + '<br>';
+			$('.lista').append(valor);
+
+		}
+
+		var numero_random = parseInt(Math.random()*cuantos);
+		$('.ganador').html('<br><strong>El ganador es:</strong> ' + input_text[numero_random].value);
+		$('.lista').show();
+
+	});
+
+	</script>
+	
+
+</body>
+</html>
